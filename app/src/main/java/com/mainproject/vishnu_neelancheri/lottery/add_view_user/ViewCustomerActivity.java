@@ -22,7 +22,7 @@ public class ViewCustomerActivity extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this );
         recyclerView.setLayoutManager( layoutManager );
         final ArrayList< CustomerDetails > customerDetailsArrayList =  CustomerDao.getInstance().getCustomer(this);
-        ViewCustomerAdapter viewCustomerAdapter = new ViewCustomerAdapter(customerDetailsArrayList, this,
+        ViewCustomerAdapter viewCustomerAdapter = new ViewCustomerAdapter(customerDetailsArrayList ,
                 new ViewCustomerAdapter.ItemSelection() {
                     @Override
                     public void delete(int pos) {

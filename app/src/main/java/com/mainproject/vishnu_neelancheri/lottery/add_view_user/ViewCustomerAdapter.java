@@ -18,11 +18,9 @@ import java.util.ArrayList;
 
 public class ViewCustomerAdapter extends RecyclerView.Adapter<ViewCustomerAdapter.DataHolder>{
     private ArrayList< CustomerDetails > mCustomerDetailsList;
-    private Context context;
     private ItemSelection mItemSelection;
-    public ViewCustomerAdapter (ArrayList <CustomerDetails> customerList, Context context, ItemSelection itemSelection ){
+    public ViewCustomerAdapter (ArrayList <CustomerDetails> customerList , ItemSelection itemSelection ){
         mCustomerDetailsList = customerList;
-        this.context = context;
         mItemSelection = itemSelection;
     }
     public class DataHolder extends RecyclerView.ViewHolder{

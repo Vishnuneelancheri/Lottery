@@ -20,12 +20,15 @@ public class LotteryDb extends SQLiteOpenHelper {
     public void onCreate( SQLiteDatabase db ){
         db.execSQL( CustomerDao.SQL_CREATE_ENTRIES_CUSTOMER_TABLE );
     }
-    public LotteryDb( Context context ){
+    private LotteryDb( Context context ){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion ){
 
+    }
+    public static void initDb( Context context ){
+        lotteryDb = new LotteryDb( context );
     }
     public static LotteryDb getInstance( Context context ){
         if ( lotteryDb == null ){
@@ -39,8 +42,7 @@ public class LotteryDb extends SQLiteOpenHelper {
     }
     public long insertData(String tableName, ContentValues contentValues ){
         SQLiteDatabase db = lotteryDb.getWritableDatabase();
-        long result = db.insert( tableName, null, contentValues );
-        return result;
+        return db.insert( tableName, null, contentValues );
     }
 
     public Cursor query(String tableName, String[] column, String selection, String[] selectionArgs){

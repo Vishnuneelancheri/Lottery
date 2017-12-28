@@ -3,8 +3,10 @@ package com.mainproject.vishnu_neelancheri.lottery.dao;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.util.Log;
 import android.widget.Toast;
 
+import com.mainproject.vishnu_neelancheri.lottery.LotteryApplication;
 import com.mainproject.vishnu_neelancheri.lottery.add_view_user.CustomerDetails;
 import com.mainproject.vishnu_neelancheri.lottery.db.LotteryDb;
 
@@ -50,8 +52,7 @@ public class CustomerDao {
             contentValues.put( KEY_MOBILE, customerDetails.getMobile() );
             contentValues.put( KEY_EMAIL, customerDetails.getEmail() );
             contentValues.put( KEY_CODE, customerDetails.getCode() );
-            long result =  LotteryDb.getInstance( context ).insertData( TABLE_CUSTOMER, contentValues );
-            return result;
+            return  LotteryDb.getInstance( context ).insertData( TABLE_CUSTOMER, contentValues );
         }
         else {
             Toast.makeText( context, "Phone number already exists", Toast.LENGTH_LONG).show();
@@ -62,9 +63,7 @@ public class CustomerDao {
     public ArrayList< CustomerDetails > getCustomer(Context context){
         ArrayList < CustomerDetails > customerDetailsArrayList = new ArrayList<>();
         String[] column = {KEY_ID, KEY_NAME, KEY_MOBILE, KEY_EMAIL, KEY_CODE };
-        String selection = null;
-        String[] selctionArg = null;
-        Cursor cursor = LotteryDb.getInstance(context).query( TABLE_CUSTOMER, column, selection, selctionArg );
+        Cursor cursor = LotteryDb.getInstance(context).query( TABLE_CUSTOMER, column, null, null );
         if ( cursor != null ){
 
             cursor.moveToFirst();
@@ -79,7 +78,9 @@ public class CustomerDao {
                     customerDetails.setCode( cursor.getString( cursor.getColumnIndex( KEY_CODE )));
                     customerDetailsArrayList.add( customerDetails );
                 }catch (Exception e){
-
+                    if (LotteryApplication.DEBUG ){
+                        Log.e( "Db exc", e.toString() );
+                    }
                 }
 
             }

@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Lottery</string>
+    <string name="user_name">User name</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="name">Name</string>
+    <string name="phone">Phone</string>
+    <string name="email">E-mail</string>
+    <string name="submit">Submit</string>
+</resources>

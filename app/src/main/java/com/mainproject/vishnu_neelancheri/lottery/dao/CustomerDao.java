@@ -8,6 +8,8 @@ import android.widget.Toast;
 import com.mainproject.vishnu_neelancheri.lottery.add_view_user.CustomerDetails;
 import com.mainproject.vishnu_neelancheri.lottery.db.LotteryDb;
 
+import java.util.ArrayList;
+
 /**
  * Created by Vishnu Neelancheri 9633647027 on 12/27/2017.
  */
@@ -56,6 +58,35 @@ public class CustomerDao {
          return 0;
         }
 
+    }
+    public ArrayList< CustomerDetails > getCustomer(Context context){
+        ArrayList < CustomerDetails > customerDetailsArrayList = new ArrayList<>();
+        String[] column = {KEY_ID, KEY_NAME, KEY_MOBILE, KEY_EMAIL, KEY_CODE };
+        String selection = null;
+        String[] selctionArg = null;
+        Cursor cursor = LotteryDb.getInstance(context).query( TABLE_CUSTOMER, column, selection, selctionArg );
+        if ( cursor != null ){
+
+            cursor.moveToFirst();
+            while ( cursor.moveToNext() ){
+                CustomerDetails customerDetails = new CustomerDetails();
+                try{
+                    int id = Integer.parseInt(cursor.getString( cursor.getColumnIndex( KEY_ID )));
+                    customerDetails.setId( id );
+                    customerDetails.setName( cursor.getString( cursor.getColumnIndex( KEY_NAME )) );
+                    customerDetails.setMobile( cursor.getString( cursor.getColumnIndex( KEY_MOBILE )));
+                    customerDetails.setEmail( cursor.getString( cursor.getColumnIndex( KEY_EMAIL )) );
+                    customerDetails.setCode( cursor.getString( cursor.getColumnIndex( KEY_CODE )));
+                    customerDetailsArrayList.add( customerDetails );
+                }catch (Exception e){
+
+                }
+
+            }
+            cursor.close();
+        }
+
+        return customerDetailsArrayList;
     }
 
 }

@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.mainproject.vishnu_neelancheri.lottery.R;
@@ -26,12 +27,14 @@ public class ViewCustomerAdapter extends RecyclerView.Adapter<ViewCustomerAdapte
     }
     public class DataHolder extends RecyclerView.ViewHolder{
         TextView txtViewName, txtViewMobile, txtViewCode, txtViewEmail;
+        Button btnSelect;
         public DataHolder( View view ){
             super( view );
             txtViewName =   view.findViewById( R.id.txt_recycler_name );
             txtViewMobile = view.findViewById( R.id.txt_recycler_mob );
             txtViewCode = view.findViewById( R.id.txt_recycler_code );
             txtViewEmail = view.findViewById( R.id.txt_recycler_email );
+            btnSelect = view.findViewById( R.id.btn_recycle_select );
         }
     }
 
@@ -48,12 +51,18 @@ public class ViewCustomerAdapter extends RecyclerView.Adapter<ViewCustomerAdapte
     }
     @Override
     public void onBindViewHolder( DataHolder dataHolder, int position ){
-        int pos = dataHolder.getAdapterPosition();
+        final int pos = dataHolder.getAdapterPosition();
         CustomerDetails customerDetails = mCustomerDetailsList.get( pos );
         dataHolder.txtViewName.setText( customerDetails.getName() );
         dataHolder.txtViewMobile.setText( customerDetails.getMobile() );
         dataHolder.txtViewCode.setText( customerDetails.getCode() );
         dataHolder.txtViewEmail.setText( customerDetails.getEmail() );
+        dataHolder.btnSelect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mItemSelection.select( pos );
+            }
+        });
     }
     public interface ItemSelection{
         void delete( int pos );

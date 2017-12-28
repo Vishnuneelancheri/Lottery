@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.mainproject.vishnu_neelancheri.lottery.add_view_user.ViewUserActivity">
+    tools:context="com.mainproject.vishnu_neelancheri.lottery.add_view_user.ViewCustomerActivity">
 
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_show_user"
+        android:id="@+id/recycler_show_customer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 </LinearLayout>

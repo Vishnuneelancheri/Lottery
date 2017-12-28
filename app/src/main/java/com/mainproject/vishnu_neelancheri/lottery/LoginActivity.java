@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.mainproject.vishnu_neelancheri.lottery.add_view_user.AddUserActivity;
+import com.mainproject.vishnu_neelancheri.lottery.home.HomeActivity;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
     private EditText mEdtUserName, mEdtPwd;
@@ -28,7 +29,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if ( !userName.isEmpty() ){
             if ( !pwd.isEmpty() ){
                 if ( userName.equals("admin") && pwd.equals("1234") ){
-                    Intent intent = new Intent(getApplicationContext(), AddUserActivity.class );
+                    Intent intent = new Intent(getApplicationContext(), HomeActivity.class );
                     startActivity( intent );
                 }
             }

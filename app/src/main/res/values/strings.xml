@@ -7,4 +7,8 @@
     <string name="phone">Phone</string>
     <string name="email">E-mail</string>
     <string name="submit">Submit</string>
+    <string name="select">Select</string>
+    <string name="delete">Delete</string>
+    <string name="view_user">View Customer</string>
+    <string name="add_custmer">Add new customer</string>
 </resources>

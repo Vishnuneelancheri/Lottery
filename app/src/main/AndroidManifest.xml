@@ -17,7 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".add_view_user.AddUserActivity" />
-        <activity android:name=".add_view_user.ViewUserActivity"></activity>
+        <activity android:name=".add_view_user.ViewCustomerActivity" />
+        <activity android:name=".home.HomeActivity"></activity>
     </application>
 
 </manifest>

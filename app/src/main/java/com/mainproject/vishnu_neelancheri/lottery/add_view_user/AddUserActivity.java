@@ -1,5 +1,6 @@
 package com.mainproject.vishnu_neelancheri.lottery.add_view_user;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -48,6 +49,10 @@ public class AddUserActivity extends AppCompatActivity implements View.OnClickLi
                 customerDetails.setMobile( mobile );
                 customerDetails.setEmail( email );
                 long result = CustomerDao.getInstance().customerRegistraion( customerDetails, this );
+                if ( result > 0 ){
+                    Intent intent = new Intent( this, ViewCustomerActivity.class );
+                    startActivity( intent );
+                }
             }else {
                 Toast.makeText( this, "Mobile number must be 10 digits", Toast.LENGTH_LONG).show();
             }

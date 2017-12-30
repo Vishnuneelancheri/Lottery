@@ -11,4 +11,14 @@
     <string name="delete">Delete</string>
     <string name="view_user">View Customer</string>
     <string name="add_custmer">Add new customer</string>
+    <string name="date">Date</string>
+    <string name="selected_date">No date choosed </string>
+    <string name="opening_balance">Opening balance</string>
+    <string name="first_price">First price</string>
+    <string name="second_price">Second price</string>
+    <string name="third_price">Third price</string>
+    <string name="total_price">Total price</string>
+    <string name="add_new_settings">Add new settings</string>
+
+
 </resources>

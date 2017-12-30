@@ -1,6 +1,5 @@
 package com.mainproject.vishnu_neelancheri.lottery.add_view_user;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +12,7 @@ import com.mainproject.vishnu_neelancheri.lottery.R;
 import java.util.ArrayList;
 
 /**
- * Created by Vishnu Neelancheri, email: vishnuvishnuneelan@gmail.com on 12/27/2017.
+ * Created by Vishnu Neelancheri, email: vishnuvishnuneelan@gmail.com on 12/27/2017
  */
 
 public class ViewCustomerAdapter extends RecyclerView.Adapter<ViewCustomerAdapter.DataHolder>{

@@ -25,5 +25,12 @@
             android:layout_weight="1"
             android:text="@string/view_user"
             android:textAllCaps="false"/>
+        <Button
+            android:id="@+id/btn_add_settings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/add_new_settings"
+            android:textAllCaps="false"/>
     </LinearLayout>
 </RelativeLayout>

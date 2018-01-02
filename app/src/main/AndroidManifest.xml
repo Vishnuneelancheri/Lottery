@@ -20,7 +20,8 @@
         <activity android:name=".add_view_user.AddUserActivity" />
         <activity android:name=".add_view_user.ViewCustomerActivity" />
         <activity android:name=".home.HomeActivity" />
-        <activity android:name=".settings.NewSettingsActivity"></activity>
+        <activity android:name=".settings.NewSettingsActivity" />
+        <activity android:name=".cash_in.CashInActivity" />
     </application>
 
 </manifest>

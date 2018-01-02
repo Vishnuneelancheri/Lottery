@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
+import com.mainproject.vishnu_neelancheri.lottery.cash_in.CashInDetails;
 import com.mainproject.vishnu_neelancheri.lottery.db.LotteryDb;
 import com.mainproject.vishnu_neelancheri.lottery.settings.SettingsDetails;
 
@@ -57,5 +58,20 @@ public class SettingsDao {
         String selectin = KEY_DATE + " = ? ";
         String[] selectionArg = {date};
         return LotteryDb.getInstance( context ).query( TABLE_SETTINGS, column, selectin, selectionArg );
+    }
+
+    public SettingsDetails getLastSettings(Context context ){
+        String[] column = { KEY_ID, KEY_PRICE1, KEY_PRICE2, KEY_PRICE3 };
+        String selectin = null;
+        String[] selectionArg = null;
+        Cursor cursor =  LotteryDb.getInstance( context ).query( TABLE_SETTINGS, column, selectin, selectionArg );
+        SettingsDetails settingsDetails = new SettingsDetails();
+        if ( cursor.getCount() > 0 && cursor.moveToLast() ){
+             settingsDetails.setId( cursor.getInt( cursor.getColumnIndex( KEY_ID ) ) );
+             settingsDetails.setFirst_price( cursor.getInt( cursor.getColumnIndex( KEY_PRICE1 ) ) );
+             settingsDetails.setSecond_price( cursor.getInt( cursor.getColumnIndex( KEY_PRICE2 ) ) );
+             settingsDetails.setThird_price( cursor.getInt( cursor.getColumnIndex( KEY_PRICE3 ) ) );
+        }
+        return settingsDetails;
     }
 }

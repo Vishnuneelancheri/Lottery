@@ -3,9 +3,9 @@
     <string name="user_name">User name</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
-    <string name="name">Name</string>
-    <string name="phone">Phone</string>
-    <string name="email">E-mail</string>
+    <string name="name">Name:</string>
+    <string name="phone">Phone:</string>
+    <string name="email">E-mail:</string>
     <string name="submit">Submit</string>
     <string name="select">Select</string>
     <string name="delete">Delete</string>
@@ -19,6 +19,10 @@
     <string name="third_price">Third price</string>
     <string name="total_price">Total price</string>
     <string name="add_new_settings">Add new settings</string>
-
+    <string name="first_price_qty">First price quantity</string>
+    <string name="second_price_qty">Second price quantity</string>
+    <string name="third_price_qty">Third price quantity</string>
+    <string name="select_customer">Select customer</string>
+    <string name="cash_in">Cash in</string>
 
 </resources>

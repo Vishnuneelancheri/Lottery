@@ -34,14 +34,16 @@ public class CustomerDao {
     private static final String KEY_MOBILE = "mobile";
     private static final String KEY_EMAIL = "email";
     private static final String KEY_CODE = "customer_code";
+    private static final String KEY_OPENING_BALANCE = "opening_balance";
 
     public static final String SQL_CREATE_ENTRIES_CUSTOMER_TABLE= " CREATE TABLE IF NOT EXISTS "+ TABLE_CUSTOMER+" ( "
             +KEY_ID+ " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,"
             +KEY_NAME+ " varchar(200), "
             +KEY_MOBILE+ " varchar(10), "
             +KEY_EMAIL+ " varchar(200), "
+            +KEY_OPENING_BALANCE + " integer, "
             +KEY_CODE+ " varchar(25) UNIQUE NOT NULL )";
-    public   long customerRegistraion(CustomerDetails customerDetails, Context context ){
+    public  long customerRegistraion(CustomerDetails customerDetails, Context context ){
         String[] column = {KEY_ID};
         String selection = KEY_MOBILE + " = ? ";
         String[] selectionArg = { customerDetails.getMobile() };

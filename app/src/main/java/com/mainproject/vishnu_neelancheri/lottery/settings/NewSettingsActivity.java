@@ -76,12 +76,14 @@ public class NewSettingsActivity extends AppCompatActivity implements View.OnCli
             int firstPrice = Integer.parseInt( mEdtTxtFirstPrice.getText().toString() );
             int secondPrice = Integer.parseInt( mEdtTxtSecondPrice.getText().toString() );
             int thirdPrice = Integer.parseInt( mEdtTxtThirdPrice.getText().toString() );
+
             SettingsDetails settingsDetails = new SettingsDetails();
             settingsDetails.setActivated( 1 );
             settingsDetails.setDate( selectedDdate );
             settingsDetails.setFirst_price( firstPrice );
             settingsDetails.setSecond_price( secondPrice );
             settingsDetails.setThird_price( thirdPrice );
+
             long result = SettingsDao.getInstance().settingsRegistraion( settingsDetails, this );
             result++;
         }catch ( Exception e ){

@@ -3,9 +3,6 @@ package com.mainproject.vishnu_neelancheri.lottery.add_view_user;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-/**
- * Created by Vishnu Neelancheri 9633647027 on 12/27/2017.
- */
 
 public class CustomerDetails implements Parcelable {
     private int id;

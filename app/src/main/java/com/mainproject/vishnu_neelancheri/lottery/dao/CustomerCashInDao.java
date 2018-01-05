@@ -34,7 +34,7 @@ public class CustomerCashInDao {
     private static final String KEY_THIRD_PRIZE_QTY = "third_price_qty";
     private static final String KEY_DATE = "date";
 
-    private static final String SQL_CREATE_ENTRIES_TABLE_CUSTOMER_CASH_IN = " CREATE TABLE IF NOT EXISTS " + TABLE_CUSTOMER_CASH_IN + " ( "
+    public static final String SQL_CREATE_ENTRIES_TABLE_CUSTOMER_CASH_IN = " CREATE TABLE IF NOT EXISTS " + TABLE_CUSTOMER_CASH_IN + " ( "
             +KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "
             + KEY_CUST_ID + " integer, "
             +KEY_SETTTINGS_ID + " integer, "

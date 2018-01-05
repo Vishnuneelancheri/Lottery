@@ -24,6 +24,6 @@
     <string name="third_price_qty">Third price quantity</string>
     <string name="select_customer">Select customer</string>
     <string name="cash_in">Cash in</string>
-
+    <string name="find_total">Find total</string>
 
 </resources>

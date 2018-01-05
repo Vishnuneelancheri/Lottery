@@ -67,6 +67,7 @@ public class AddUserActivity extends AppCompatActivity implements View.OnClickLi
 
                 long result = CustomerDao.getInstance().customerRegistraion( customerDetails, this );
                 if ( result > 0 ){
+                    Toast.makeText( this, "Customer added successfully", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent( this, ViewCustomerActivity.class );
                     startActivity( intent );
                 }

@@ -12,9 +12,6 @@ import com.mainproject.vishnu_neelancheri.lottery.db.LotteryDb;
 
 import java.util.ArrayList;
 
-/**
- * Created by Vishnu Neelancheri 9633647027 on 12/27/2017.
- */
 
 public class CustomerDao {
     private static volatile  CustomerDao customerDao;
@@ -69,7 +66,6 @@ public class CustomerDao {
         Cursor cursor = LotteryDb.getInstance(context).query( TABLE_CUSTOMER, column, null, null );
         if ( cursor != null ){
 
-            cursor.moveToFirst();
             while ( cursor.moveToNext() ){
                 CustomerDetails customerDetails = new CustomerDetails();
                 try{

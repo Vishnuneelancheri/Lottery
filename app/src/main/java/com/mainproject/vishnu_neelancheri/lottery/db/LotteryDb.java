@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.mainproject.vishnu_neelancheri.lottery.dao.CustomerCashInDao;
 import com.mainproject.vishnu_neelancheri.lottery.dao.CustomerDao;
 import com.mainproject.vishnu_neelancheri.lottery.dao.SettingsDao;
 
@@ -17,6 +18,7 @@ public class LotteryDb extends SQLiteOpenHelper {
     public void onCreate( SQLiteDatabase db ){
         db.execSQL( CustomerDao.SQL_CREATE_ENTRIES_CUSTOMER_TABLE );
         db.execSQL(SettingsDao.SQL_CREATE_ENTRIES_TABLE_SETTINGS );
+        db.execSQL(CustomerCashInDao.SQL_CREATE_ENTRIES_TABLE_CUSTOMER_CASH_IN );
     }
     private LotteryDb( Context context ){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

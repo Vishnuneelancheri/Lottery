@@ -9,7 +9,17 @@ import android.os.Parcelable;
 
 public class CustomerDetails implements Parcelable {
     private int id;
+    private int openingBalance;
     private String name, email, mobile, code;
+
+    public int getOpeningBalance() {
+        return openingBalance;
+    }
+
+    public void setOpeningBalance(int openingBalance) {
+        this.openingBalance = openingBalance;
+    }
+
 
     public int getId() {
         return id;

@@ -54,6 +54,7 @@ public class CustomerDao {
             contentValues.put( KEY_MOBILE, customerDetails.getMobile() );
             contentValues.put( KEY_EMAIL, customerDetails.getEmail() );
             contentValues.put( KEY_CODE, customerDetails.getCode() );
+            contentValues.put( KEY_OPENING_BALANCE, customerDetails.getOpeningBalance() );
             return  LotteryDb.getInstance( context ).insertData( TABLE_CUSTOMER, contentValues );
         }
         else {

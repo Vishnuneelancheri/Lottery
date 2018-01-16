@@ -24,7 +24,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
     @Override
     public void onClick( View view ){
-        String userName = mEdtUserName.getText().toString();
+        Intent intent = new Intent(getApplicationContext(), HomeActivity.class );
+        startActivity( intent );
+        /*String userName = mEdtUserName.getText().toString();
         String pwd = mEdtPwd.getText().toString();
         if ( !userName.isEmpty() ){
             if ( !pwd.isEmpty() ){
@@ -33,6 +35,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     startActivity( intent );
                 }
             }
-        }
+        }*/
     }
 }

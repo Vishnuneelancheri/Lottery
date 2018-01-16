@@ -6,6 +6,7 @@
     <string name="name">Name:</string>
     <string name="phone">Phone:</string>
     <string name="email">E-mail:</string>
+    <string name="unique_short_code">Short code</string>
     <string name="submit">Submit</string>
     <string name="select">Select</string>
     <string name="delete">Delete</string>
@@ -14,16 +15,22 @@
     <string name="date">Date</string>
     <string name="selected_date">No date choosed </string>
     <string name="opening_balance">Opening balance</string>
-    <string name="first_price">First price</string>
-    <string name="second_price">Second price</string>
-    <string name="third_price">Third price</string>
-    <string name="total_price">Total price</string>
+    <string name="first_price">First price:</string>
+    <string name="second_price">Second price:</string>
+    <string name="third_price">Third price:</string>
+    <string name="total_price">Total price:</string>
     <string name="add_new_settings">Add new settings</string>
-    <string name="first_price_qty">First price quantity</string>
-    <string name="second_price_qty">Second price quantity</string>
-    <string name="third_price_qty">Third price quantity</string>
+    <string name="first_price_qty">First price quantity:</string>
+    <string name="second_price_qty">Second price quantity:</string>
+    <string name="third_price_qty">Third price quantity:</string>
     <string name="select_customer">Select customer</string>
     <string name="cash_in">Cash in</string>
     <string name="find_total">Find total</string>
+    <string name="select_settings">Select settings</string>
+    <string name="cash_out">Cash out</string>
+    <string name="total_balance">Total balance:</string>
+    <string name="withdrawal_amount">Withdrawal amount</string>
+    <string name="withdraw">Withdraw</string>
+
 
 </resources>

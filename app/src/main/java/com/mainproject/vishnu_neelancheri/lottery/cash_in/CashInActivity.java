@@ -16,13 +16,14 @@ import com.mainproject.vishnu_neelancheri.lottery.R;
 import com.mainproject.vishnu_neelancheri.lottery.add_view_user.CustomerDetails;
 import com.mainproject.vishnu_neelancheri.lottery.add_view_user.ViewCustomerActivity;
 import com.mainproject.vishnu_neelancheri.lottery.dao.CustomerCashInDao;
-import com.mainproject.vishnu_neelancheri.lottery.dao.SettingsDao;
 import com.mainproject.vishnu_neelancheri.lottery.settings.SettingsDetails;
+import com.mainproject.vishnu_neelancheri.lottery.settings.ViewAllSettingsActivity;
 
 import java.util.Calendar;
 
 public class CashInActivity extends AppCompatActivity implements View.OnClickListener{
     private final int SELECT_CUSTOMER_REQUEST = 100;
+    private final int SELECT_SETTINGS_REQUEST = 200;
     private TextView mTxtName, mTxtPhone, mTxtShortCode, mTxtSelectedDate ;
     private EditText mEdtFirstPrizeQuantity, mEdtSecondPrizeQuantity, mEdtdThirdPrizeQuantity;
     private String mSelectedDateString;
@@ -37,6 +38,7 @@ public class CashInActivity extends AppCompatActivity implements View.OnClickLis
         findViewById( R.id.btn_choose_date ).setOnClickListener( this );
         findViewById( R.id.btn_submit ).setOnClickListener( this );
         findViewById( R.id.btn_total ).setOnClickListener( this );
+        findViewById( R.id.btn_select_settings ).setOnClickListener( this );
 
         mTxtName = findViewById( R.id.txt_cust_name );
         mTxtPhone = findViewById( R.id.txt_cust_phone );
@@ -47,9 +49,9 @@ public class CashInActivity extends AppCompatActivity implements View.OnClickLis
         mEdtSecondPrizeQuantity = findViewById( R.id.edt_txt_second_prize_qty );
         mEdtdThirdPrizeQuantity = findViewById( R.id.edt_txt_third_prize_qty );
 
-        loadSettings();
+        /*loadSettings();*/
     }
-    private void loadSettings(){
+    /*private void loadSettings(){
         TextView txtFirstPrize = findViewById( R.id.txt_settings_first_prize );
         TextView txtSecondPrize = findViewById( R.id.txt_settings_second_prize );
         TextView txtThirdPrize = findViewById( R.id.txt_settings_third_prize );
@@ -59,7 +61,7 @@ public class CashInActivity extends AppCompatActivity implements View.OnClickLis
         txtSecondPrize.setText( Integer.toString( mSettingsDetails.getSecond_price() ) );
         txtThirdPrize.setText( Integer.toString( mSettingsDetails.getThird_price() ) );
 
-    }
+    }*/
 
     @Override
     public void onClick( View view ){
@@ -84,6 +86,11 @@ public class CashInActivity extends AppCompatActivity implements View.OnClickLis
                 submit(2);
             }
             break;
+            case R.id.btn_select_settings:{
+                Intent intent = new Intent( CashInActivity.this, ViewAllSettingsActivity.class );
+                startActivityForResult( intent, SELECT_SETTINGS_REQUEST);
+            }
+            break;
         }
     }
     @Override
@@ -97,6 +104,18 @@ public class CashInActivity extends AppCompatActivity implements View.OnClickLis
                     mTxtPhone.setText( mCustomerDetails.getMobile() );
                     mTxtShortCode.setText( mCustomerDetails.getCode() );
                 }
+            }
+        }
+        else if ( requestCode == SELECT_SETTINGS_REQUEST  && resultCode == RESULT_OK ){
+            mSettingsDetails = data.getParcelableExtra( getString( R.string.app_name ) );
+            if ( mSettingsDetails != null ){
+                TextView txtFirstPrize = findViewById( R.id.txt_settings_first_prize );
+                TextView txtSecondPrize = findViewById( R.id.txt_settings_second_prize );
+                TextView txtThirdPrize = findViewById( R.id.txt_settings_third_prize );
+
+                txtFirstPrize.setText( String.valueOf( mSettingsDetails.getFirst_price() ) );
+                txtSecondPrize.setText( String.valueOf( mSettingsDetails.getSecond_price() ) );
+                txtThirdPrize.setText( String.valueOf( mSettingsDetails.getThird_price() ) );
             }
         }
     }
@@ -115,6 +134,10 @@ public class CashInActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void submit(int condition){
+        if ( mSettingsDetails == null ){
+            Toast.makeText( this, "Please select settings ", Toast.LENGTH_LONG ).show();
+            return;
+        }
         if ( mSelectedDateString == null ){
             Toast.makeText( this, "Please select date ", Toast.LENGTH_LONG ).show();
             return;
@@ -131,39 +154,40 @@ public class CashInActivity extends AppCompatActivity implements View.OnClickLis
 
         TextView txtViewTotal = findViewById( R.id.txt_total );
         try{
+            int total;
             int firstQty = Integer.parseInt( firstPriceQuantity );
             int secndQty = Integer.parseInt( secondPriceQuantity );
             int thirdQty = Integer.parseInt( thirdPriceQuantity );
             if ( mSettingsDetails != null ){
-                int total = ( firstQty * mSettingsDetails.getFirst_price() ) + ( secndQty * mSettingsDetails.getSecond_price() ) +
+                total = ( firstQty * mSettingsDetails.getFirst_price() ) + ( secndQty * mSettingsDetails.getSecond_price() ) +
                         ( thirdQty  * mSettingsDetails.getThird_price() );
-                /*txtViewTotal.setText( Integer.toString( total ));*/
-                txtViewTotal.setText( String.format( "%d", total ));
+                txtViewTotal.setText( String.valueOf( total ));
+                if ( condition == 2 ){
+                    if ( mCustomerDetails == null ){
+                        Toast.makeText( this, "Please select customer", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    CashInDetails cashInDetails = new CashInDetails();
+                    cashInDetails.setSettingsId( mSettingsDetails.getSettingsId() );
+                    cashInDetails.setFirstPrizeQty( firstQty );
+                    cashInDetails.setSecondPrizeQty( secndQty );
+                    cashInDetails.setThirdPriceQty( thirdQty );
+                    cashInDetails.setCustomerId( mCustomerDetails.getId() );
+                    cashInDetails.setDate( mSelectedDateString );
+                    cashInDetails.setTotalAmount( total );
+                    long result = CustomerCashInDao.getInstance().insertDetails( cashInDetails, this );
+                    if ( result > 0 ){
+                        Toast.makeText( this, "Data inserted successfully ", Toast.LENGTH_LONG).show();
+                        finish();
+                    }else {
+                        Toast.makeText( this, " Can't insert data ", Toast.LENGTH_LONG).show();
+                    }
+                }
             }
             else {
                 finish();
             }
-            if ( condition == 2 ){
-                if ( mCustomerDetails == null ){
-                    Toast.makeText( this, "Please select customer", Toast.LENGTH_LONG).show();
-                    return;
-                }
-                CashInDetails cashInDetails = new CashInDetails();
-                cashInDetails.setSettingsId( mSettingsDetails.getId() );
-                cashInDetails.setFirstPrizeQty( firstQty );
-                cashInDetails.setSecondPrizeQty( secndQty );
-                cashInDetails.setThirdPriceQty( thirdQty );
-                cashInDetails.setCustomerId( mCustomerDetails.getId() );
-                cashInDetails.setDate( mSelectedDateString );
-                long result = CustomerCashInDao.getInstance().insertDetails( cashInDetails, this );
-                if ( result > 0 ){
-                    Toast.makeText( this, "Data inserted successfully ", Toast.LENGTH_LONG).show();
-                    finish();
-                }else {
-                    Toast.makeText( this, " Can't insert data ", Toast.LENGTH_LONG).show();
-                }
 
-            }
 
         }catch ( Exception e ){
             if ( LotteryApplication.DEBUG  ){

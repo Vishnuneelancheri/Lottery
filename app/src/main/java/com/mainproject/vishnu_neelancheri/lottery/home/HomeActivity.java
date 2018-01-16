@@ -9,6 +9,7 @@ import com.mainproject.vishnu_neelancheri.lottery.R;
 import com.mainproject.vishnu_neelancheri.lottery.add_view_user.AddUserActivity;
 import com.mainproject.vishnu_neelancheri.lottery.add_view_user.ViewCustomerActivity;
 import com.mainproject.vishnu_neelancheri.lottery.cash_in.CashInActivity;
+import com.mainproject.vishnu_neelancheri.lottery.cash_withdrawal.CashWithdrawalActivity;
 import com.mainproject.vishnu_neelancheri.lottery.settings.NewSettingsActivity;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener{
@@ -22,6 +23,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         findViewById( R.id.btn_view_cust ).setOnClickListener( this );
         findViewById( R.id.btn_add_settings ).setOnClickListener( this );
         findViewById( R.id.btn_cash_in ).setOnClickListener( this );
+        findViewById( R.id.btn_cash_out ).setOnClickListener( this );
     }
     @Override
     public void onClick( View view ){
@@ -46,6 +48,11 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             break;
             case R.id.btn_cash_in:{
                 Intent intent = new Intent( HomeActivity.this, CashInActivity.class );
+                startActivity( intent );
+            }
+            break;
+            case R.id.btn_cash_out:{
+                Intent intent = new Intent( HomeActivity.this, CashWithdrawalActivity.class );
                 startActivity( intent );
             }
             break;

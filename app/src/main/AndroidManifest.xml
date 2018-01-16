@@ -22,6 +22,8 @@
         <activity android:name=".home.HomeActivity" />
         <activity android:name=".settings.NewSettingsActivity" />
         <activity android:name=".cash_in.CashInActivity" />
+        <activity android:name=".settings.ViewAllSettingsActivity" />
+        <activity android:name=".cash_withdrawal.CashWithdrawalActivity"></activity>
     </application>
 
 </manifest>

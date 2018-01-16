@@ -4,9 +4,10 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
-import com.mainproject.vishnu_neelancheri.lottery.cash_in.CashInDetails;
 import com.mainproject.vishnu_neelancheri.lottery.db.LotteryDb;
 import com.mainproject.vishnu_neelancheri.lottery.settings.SettingsDetails;
+
+import java.util.ArrayList;
 
 /**
  * Created by Vishnu Neelancheri, email: vishnuvishnuneelan@gmail.com on 12/30/2017.
@@ -67,11 +68,36 @@ public class SettingsDao {
         Cursor cursor =  LotteryDb.getInstance( context ).query( TABLE_SETTINGS, column, selectin, selectionArg );
         SettingsDetails settingsDetails = new SettingsDetails();
         if ( cursor.getCount() > 0 && cursor.moveToLast() ){
-             settingsDetails.setId( cursor.getInt( cursor.getColumnIndex( KEY_ID ) ) );
+             settingsDetails.setSettingsId( cursor.getInt( cursor.getColumnIndex( KEY_ID ) ) );
              settingsDetails.setFirst_price( cursor.getInt( cursor.getColumnIndex( KEY_PRICE1 ) ) );
              settingsDetails.setSecond_price( cursor.getInt( cursor.getColumnIndex( KEY_PRICE2 ) ) );
              settingsDetails.setThird_price( cursor.getInt( cursor.getColumnIndex( KEY_PRICE3 ) ) );
         }
         return settingsDetails;
     }
+    public ArrayList< SettingsDetails > getAllSettings(Context context ){
+        String[] column = { KEY_ID, KEY_PRICE1, KEY_PRICE2, KEY_PRICE3 };
+        String selectin = null;
+        String[] selectionArg = null;
+        Cursor cursor =  LotteryDb.getInstance( context ).query( TABLE_SETTINGS, column, selectin, selectionArg );
+        ArrayList< SettingsDetails > settingsDetailsList = new ArrayList<>();
+        while ( cursor.moveToNext()){
+            SettingsDetails settingsDetails = new SettingsDetails();
+            settingsDetails.setSettingsId( cursor.getInt( cursor.getColumnIndex( KEY_ID ) ) );
+            settingsDetails.setFirst_price( cursor.getInt( cursor.getColumnIndex( KEY_PRICE1 ) ) );
+            settingsDetails.setSecond_price( cursor.getInt( cursor.getColumnIndex( KEY_PRICE2 ) ) );
+            settingsDetails.setThird_price( cursor.getInt( cursor.getColumnIndex( KEY_PRICE3 ) ) );
+            settingsDetailsList.add( settingsDetails );
+        }
+        /*if ( cursor.getCount() > 0 && cursor.moveToLast() ){
+            SettingsDetails settingsDetails = new SettingsDetails();
+            settingsDetails.setSettingsId( cursor.getInt( cursor.getColumnIndex( KEY_ID ) ) );
+            settingsDetails.setFirst_price( cursor.getInt( cursor.getColumnIndex( KEY_PRICE1 ) ) );
+            settingsDetails.setSecond_price( cursor.getInt( cursor.getColumnIndex( KEY_PRICE2 ) ) );
+            settingsDetails.setThird_price( cursor.getInt( cursor.getColumnIndex( KEY_PRICE3 ) ) );
+           settingsDetailsList.add( settingsDetails );
+        }*/
+        return settingsDetailsList;
+    }
+
 }

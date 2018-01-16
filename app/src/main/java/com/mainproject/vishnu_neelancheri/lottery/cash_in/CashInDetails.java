@@ -11,7 +11,16 @@ public class CashInDetails {
     private int firstPrizeQty;
     private int secondPrizeQty;
     private int thirdPriceQty;
+    private int totalAmount;
     private String date;
+
+    public int getTotalAmount() {
+        return totalAmount;
+    }
+
+    public void setTotalAmount(int totalAmount) {
+        this.totalAmount = totalAmount;
+    }
 
     public int getCustomerId() {
         return customerId;

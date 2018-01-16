@@ -12,7 +12,7 @@
         android:layout_centerVertical="true"
         tools:ignore="UselessParent">
         <EditText
-            android:id="@+id/edt_txt_name"
+            android:id="@+id/edt_txt_name" 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
@@ -34,7 +34,14 @@
             android:id="@+id/edt_txt_opening_balance"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="number"
             android:hint="@string/opening_balance"/>
+        <EditText
+            android:id="@+id/edt_txt_short_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/unique_short_code"
+            android:inputType="text"/>
         <Button
             android:id="@+id/btn_submit"
             android:layout_width="wrap_content"

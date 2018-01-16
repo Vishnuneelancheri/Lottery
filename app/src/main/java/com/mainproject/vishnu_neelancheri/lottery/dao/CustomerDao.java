@@ -62,7 +62,7 @@ public class CustomerDao {
     }
     public ArrayList< CustomerDetails > getCustomer(Context context){
         ArrayList < CustomerDetails > customerDetailsArrayList = new ArrayList<>();
-        String[] column = {KEY_ID, KEY_NAME, KEY_MOBILE, KEY_EMAIL, KEY_CODE };
+        String[] column = {KEY_ID, KEY_NAME, KEY_MOBILE, KEY_EMAIL, KEY_CODE, KEY_OPENING_BALANCE };
         Cursor cursor = LotteryDb.getInstance(context).query( TABLE_CUSTOMER, column, null, null );
         if ( cursor != null ){
 
@@ -75,6 +75,8 @@ public class CustomerDao {
                     customerDetails.setMobile( cursor.getString( cursor.getColumnIndex( KEY_MOBILE )));
                     customerDetails.setEmail( cursor.getString( cursor.getColumnIndex( KEY_EMAIL )) );
                     customerDetails.setCode( cursor.getString( cursor.getColumnIndex( KEY_CODE )));
+                    cursor.getString( cursor.getColumnIndex( KEY_OPENING_BALANCE ));
+                    customerDetails.setOpeningBalance( Integer.parseInt( cursor.getString( cursor.getColumnIndex( KEY_OPENING_BALANCE )) ));
                     customerDetailsArrayList.add( customerDetails );
                 }catch (Exception e){
                     if (LotteryApplication.DEBUG ){
@@ -87,6 +89,22 @@ public class CustomerDao {
         }
 
         return customerDetailsArrayList;
+    }
+    public long getOpeningBalance( int custId, Context context ){
+        Long openingBalnce = 0L;
+        String[] column = { KEY_OPENING_BALANCE };
+        String[] args = { String.valueOf( custId )};
+        try {
+            Cursor cursor = LotteryDb.getInstance( context ).query( TABLE_CUSTOMER, column, KEY_ID +" = ?" , args );
+            if ( cursor.getCount() > 0 ){
+                cursor.moveToFirst();
+                openingBalnce += Long.parseLong( cursor.getString( cursor.getColumnIndex( KEY_OPENING_BALANCE )));
+            }
+        }catch ( Exception e ){
+            if ( LotteryApplication.DEBUG )
+                Log.e("Ex", e.toString() );
+        }
+        return openingBalnce;
     }
 
 }
